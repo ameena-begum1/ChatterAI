@@ -1,3 +1,4 @@
+import 'package:chatbot/backend_services/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'signin_screen.dart'; // Import the SigninScreen
@@ -19,56 +20,63 @@ class _SignUpScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-void _showSnackBar(String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Container(
-        width: double.infinity, // Make the SnackBar full-width
-        child: Text(
-          message,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-      ),
-      behavior: SnackBarBehavior.floating,
-    ),
-  );
-}
+  //////Backend start
+  void _signUp() async {
+    final String email = _emailTextController.text.trim();
+    final String password = _passwordTextController.text.trim();
+    final String confirmPassword = _confirmPasswordTextController.text.trim();
+    final String fullName = _userNameTextController.text.trim();
 
+    if (email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty ||
+        fullName.isEmpty) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please fill all fields')));
+      return;
+    }
 
-void _signUp() {
-  final String email = _emailTextController.text.trim();
-  final String password = _passwordTextController.text.trim();
-  final String confirmPassword = _confirmPasswordTextController.text.trim();
-  final String fullName = _userNameTextController.text.trim();
+    if (!email.contains('@')) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Enter a valid email address')));
 
-  if (email.isEmpty || password.isEmpty || confirmPassword.isEmpty || fullName.isEmpty) {
-    _showSnackBar("Please fill all fields");
-    return;
+      return;
+    }
+
+    if (password.length < 6) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Password must be at least 6 characters')),
+      );
+      return;
+    }
+
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Passwords do not match')));
+      return;
+    }
+
+    final auth = SignUpAuth();
+    final result = await auth.signUpWithEmail(email: email, password: password);
+
+    if (result == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Account created successfully')));
+       Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => SigninScreen()),
+    );
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('SignUp failed')));
+    }
   }
-
-  if (!email.contains('@')) {
-    _showSnackBar("Enter a valid email address");
-    return;
-  }
-
-  if (password.length < 6) {
-    _showSnackBar("Password must be at least 6 characters");
-    return;
-  }
-
-  if (password != confirmPassword) {
-    _showSnackBar("Passwords do not match");
-    return;
-  }
-
-  _showSnackBar("Account created successfully (locally)");
-
-  // Navigate or reset form as per your app flow
-}
-
+  /////////end
 
   @override
   Widget build(BuildContext context) {
