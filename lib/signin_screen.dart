@@ -1,5 +1,7 @@
-import 'package:chatbot/chat_bot.dart';
+import 'package:chatbot/backend_services/signin.dart';
+import 'package:chatbot/chatbot_screen.dart';
 import 'package:chatbot/password_reset.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 
@@ -13,19 +15,39 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  void _Login() {
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please fill in all fields')),
-      );
-      return;
-    }
+//////Backend start
+final SignInAuth _authService = SignInAuth();
 
+void _login() async {
+  final email = _emailController.text.trim();
+  final password = _passwordController.text.trim();
+
+  if (email.isEmpty || password.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Please fill in all fields')),
+    );
+    return;
+  }
+
+  String? result = await _authService.signInWithEmail(email, password);
+
+  if (result == null) {
+    // Login successful
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Login Successful'),duration: Duration(seconds: 1),),
+    );
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => ChatbotScreen(username: 'Ameena')),
+      MaterialPageRoute(builder: (context) => ChatbotScreen(username: FirebaseAuth.instance.currentUser?.email ?? 'Guest'),
+    ));
+  } else {
+    // Show error
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Incorrect login')),
     );
   }
+}
+/////////end
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +179,7 @@ class _SigninScreenState extends State<SigninScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: _Login,
+                  onPressed: _login,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF9B5DE5),
                     foregroundColor: Colors.white,

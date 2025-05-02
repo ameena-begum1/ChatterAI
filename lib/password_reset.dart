@@ -1,3 +1,4 @@
+import 'package:chatbot/backend_services/reset.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
@@ -8,20 +9,35 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
 
-  void _handleResetPassword() {
-    if (_emailController.text.isEmpty) {
+///start
+final ResetService _authService = ResetService(); // <-- Create AuthService instance...backend
+
+  void _handleResetPassword() async {
+    String email = _emailController.text.trim();
+
+    if (email.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter your email')),
       );
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Password reset link sent to ${_emailController.text}')),
-    );
-    // Here, you'd normally send a password reset email using Firebase or backend.
-  }
+    String? result = await _authService.resetPassword(email);
 
+    if (result == null) {
+      // Password reset link sent successfully
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Password reset link sent to $email')),
+      );
+    } else {
+      // Show error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result)),
+      );
+    }
+  }
+  //end
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

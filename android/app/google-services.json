@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "337452625695",
+    "project_id": "chatter-ai-64d77",
+    "storage_bucket": "chatter-ai-64d77.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337452625695:android:f13f4b4f2f30c1aeda4a2a",
+        "android_client_info": {
+          "package_name": "com.example.chatbot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkabRTh6Op2bzmE1gfiC-CEckC8Tq4bzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
