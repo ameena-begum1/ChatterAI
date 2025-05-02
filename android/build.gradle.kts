@@ -1,5 +1,13 @@
-plugins {
-  id("com.google.gms.google-services") version "4.3.15" apply false
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.google.gms:google-services:4.3.15") // Google Services Plugin
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.20") 
+        classpath("com.android.tools.build:gradle:8.0.2") 
+    }
 }
 
 allprojects {
@@ -9,17 +17,17 @@ allprojects {
     }
 }
 
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+rootProject.buildDir = file("../build")
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    project.buildDir = file("${rootProject.buildDir}/${project.name}")
 }
+
 subprojects {
     project.evaluationDependsOn(":app")
 }
 
+// Corrected Kotlin DSL syntax for the clean task
 tasks.register<Delete>("clean") {
-    delete(rootProject.layout.buildDirectory)
+    delete(rootProject.buildDir)
 }
