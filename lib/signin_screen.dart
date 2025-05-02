@@ -15,39 +15,44 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-//////Backend start
-final SignInAuth _authService = SignInAuth();
+  //////Backend start
+  final SignInAuth _authService = SignInAuth();
 
-void _login() async {
-  final email = _emailController.text.trim();
-  final password = _passwordController.text.trim();
+  void _login() async {
+    final email = _emailController.text.trim();
+    final password = _passwordController.text.trim();
 
-  if (email.isEmpty || password.isEmpty) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please fill in all fields')),
-    );
-    return;
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please fill in all fields')),
+      );
+      return;
+    }
+
+    String? result = await _authService.signInWithEmail(email, password);
+
+    if (result == null) {
+      // Login successful
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Successful'),
+          duration: Duration(seconds: 1),
+        ),
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ChatbotScreen(username: 'Ameena'),
+        ),
+      );
+    } else {
+      // Show error
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Incorrect login')));
+    }
   }
-
-  String? result = await _authService.signInWithEmail(email, password);
-
-  if (result == null) {
-    // Login successful
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Login Successful'),duration: Duration(seconds: 1),),
-    );
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => ChatbotScreen(username: FirebaseAuth.instance.currentUser?.email ?? 'Guest'),
-    ));
-  } else {
-    // Show error
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Incorrect login')),
-    );
-  }
-}
-/////////end
+  /////////end
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +65,7 @@ void _login() async {
             shrinkWrap: true,
             children: [
               const SizedBox(height: 30),
-              Center(
-                child: Image.asset(
-                  'assets/ChatterAI.png',
-                  height: 180,
-                ),
-              ),
+              Center(child: Image.asset('assets/ChatterAI.png', height: 180)),
               const SizedBox(height: 20),
               const Center(
                 child: Text(
@@ -161,7 +161,12 @@ void _login() async {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgotPasswordScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ForgotPasswordScreen(),
+                      ),
+                    );
                   },
                   child: const Text(
                     'Forgot Password?',
@@ -189,10 +194,7 @@ void _login() async {
                     ),
                     elevation: 4,
                   ),
-                  child: const Text(
-                    'Login',
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  child: const Text('Login', style: TextStyle(fontSize: 16)),
                 ),
               ),
 
