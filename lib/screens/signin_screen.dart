@@ -1,7 +1,6 @@
 import 'package:chatbot/backend_services/signin.dart';
-import 'package:chatbot/chatbot_screen.dart';
-import 'package:chatbot/password_reset.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:chatbot/screens/chatbot_screen.dart';
+import 'package:chatbot/screens/password_reset.dart';
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 
