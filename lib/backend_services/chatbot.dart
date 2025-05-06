@@ -1,7 +1,7 @@
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 class BackendService {
-  final model = GenerativeModel(model: 'gemini-2.0-flash', apiKey: 'AIzaSyCRJuTgQ4_zHlHitR9kxwWA4uQ2bwemW_I');
+  final model = GenerativeModel(model: 'gemini-2.0-flash', apiKey: 'your_api_key');
 
   Future<String> getResponse(String userMessage) async {
     try {
