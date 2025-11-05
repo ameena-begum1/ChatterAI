@@ -1,16 +1,24 @@
-# chatbot
+<h1 align="center">💬 ChatterAI</h1>
 
-A new Flutter project.
+<p align="center">
+  <img src="assets/ChatterAI.png" alt="ChatterAI Bot" width="230" style="margin-top: 10px; border-radius: 50%;"/>
+</p>
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+### 🧠 About ChatterAI
+ChatterAI is a **smart chatbot app** built using **Flutter** and **Firebase**.  
+It integrates **Gemini API** to power real-time intelligent responses.  
+The app lets users **sign up, log in, chat with the AI bot, and reset passwords** — all with a smooth, modern UI.  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### 📱 The UI Looks Like This
+<p align="center">
+  <img src="assets/images/ui.png" alt="App UI" width="300" style="border-radius: 10px;"/>
+</p>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+### 👩‍💻 Developed By
+**Ruqsana Begum**
