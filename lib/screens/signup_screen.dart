@@ -1,7 +1,7 @@
 import 'package:chatbot/backend_services/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'signin_screen.dart'; // Import the SigninScreen
+import 'signin_screen.dart'; 
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -20,7 +20,7 @@ class _SignUpScreenState extends State<SignupScreen> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-  //////Backend start
+//function 
   void _signUp() async {
     final String email = _emailTextController.text.trim();
     final String password = _passwordTextController.text.trim();
@@ -37,7 +37,7 @@ class _SignUpScreenState extends State<SignupScreen> {
       return;
     }
 
-    if (!email.contains('@')) {
+    if (!email.contains('@')) { 
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Enter a valid email address')));
@@ -59,7 +59,7 @@ class _SignUpScreenState extends State<SignupScreen> {
       return;
     }
 
-    final auth = SignUpAuth();
+    final auth = SignUpAuth(); //object 
     final result = await auth.signUpWithEmail(email: email, password: password);
 
     if (result == null) {
@@ -76,14 +76,13 @@ class _SignUpScreenState extends State<SignupScreen> {
       ).showSnackBar(SnackBar(content: Text('SignUp failed')));
     }
   }
-  /////////end
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF3E4),
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Removes back button
+        automaticallyImplyLeading: false,
         iconTheme: const IconThemeData(color: Color(0xFFFFF3E4)),
         backgroundColor: const Color(0xFF9B5DE5),
         elevation: 0,

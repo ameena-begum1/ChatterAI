@@ -1,5 +1,6 @@
 import 'package:chatbot/backend_services/signin.dart';
 import 'package:chatbot/screens/chatbot_screen.dart';
+import 'package:chatbot/screens/chatbot_screen.dart';
 import 'package:chatbot/screens/password_reset.dart';
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
@@ -14,8 +15,7 @@ class _SigninScreenState extends State<SigninScreen> {
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  //////Backend start
-  final SignInAuth _authService = SignInAuth();
+  final SignInAuth _authService = SignInAuth(); //object
 
   void _login() async {
     final email = _emailController.text.trim();
@@ -31,7 +31,6 @@ class _SigninScreenState extends State<SigninScreen> {
     String? result = await _authService.signInWithEmail(email, password);
 
     if (result == null) {
-      // Login successful
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Login Successful'),
@@ -45,13 +44,11 @@ class _SigninScreenState extends State<SigninScreen> {
         ),
       );
     } else {
-      // Show error
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Incorrect login')));
     }
   }
-  /////////end
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +75,6 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               const SizedBox(height: 30),
 
-              // Google Sign-In Button
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(
@@ -101,7 +97,6 @@ class _SigninScreenState extends State<SigninScreen> {
 
               const SizedBox(height: 25),
 
-              // OR Divider
               Row(
                 children: const [
                   Expanded(child: Divider(thickness: 1)),
@@ -115,7 +110,6 @@ class _SigninScreenState extends State<SigninScreen> {
 
               const SizedBox(height: 25),
 
-              // Email TextField
               TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -130,7 +124,6 @@ class _SigninScreenState extends State<SigninScreen> {
               ),
               const SizedBox(height: 15),
 
-              // Password TextField
               TextField(
                 controller: _passwordController,
                 obscureText: _obscureText,
@@ -155,7 +148,6 @@ class _SigninScreenState extends State<SigninScreen> {
                 ),
               ),
 
-              // Forgot Password Link
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -179,7 +171,6 @@ class _SigninScreenState extends State<SigninScreen> {
 
               const SizedBox(height: 10),
 
-              // Login Button
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -199,7 +190,6 @@ class _SigninScreenState extends State<SigninScreen> {
 
               const SizedBox(height: 20),
 
-              // Sign Up Option
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

@@ -9,8 +9,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
 
-///start
-final ResetService _authService = ResetService(); // <-- Create AuthService instance...backend
+final ResetService _authService = ResetService(); 
 
   void _handleResetPassword() async {
     String email = _emailController.text.trim();
@@ -25,18 +24,16 @@ final ResetService _authService = ResetService(); // <-- Create AuthService inst
     String? result = await _authService.resetPassword(email);
 
     if (result == null) {
-      // Password reset link sent successfully
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Password reset link sent to $email')),
       );
     } else {
-      // Show error
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(result)),
       );
     }
   }
-  //end
+
   
   @override
   Widget build(BuildContext context) {

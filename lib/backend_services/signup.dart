@@ -3,18 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 class SignUpAuth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String?> signUpWithEmail({
+  Future<String?> signUpWithEmail({ //userdefined 
     required String email,
-    required String password,
+    required String password,   
   }) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword( //predefined 
         email: email,
         password: password,
       );
-      return null; // Success
+      return null; //success
     } on FirebaseAuthException catch (e) {
-      return e.message; // Return Firebase error
+      return e.message;
     } catch (e) {
       return "An unknown error occurred.";
     }
