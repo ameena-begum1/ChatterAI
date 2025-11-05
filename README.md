@@ -1,4 +1,4 @@
-<h1 align="center">💬✨ ChatterAI</h1>
+<h1 align="center"> ChatterAI</h1>
 
 <p align="center">
   <img src="assets/ChatterAI.png" alt="ChatterAI Bot" width="220" style="margin-top: 15px; border-radius: 50%; box-shadow: 0px 4px 15px rgba(0,0,0,0.15);"/>
@@ -14,7 +14,7 @@
 
 ---
 
-<h3 align="center">📱 The UI Looks Like This</h3>
+<h3 align="center"> The UI Looks Like This</h3>
 
 <p align="center" style="margin-top: 20px;">
   <img src="assets/1.jpg" alt="App UI 1" width="210" style="border-radius: 15px; margin: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);"/>
@@ -25,8 +25,9 @@
 
 ---
 
-<h3 align="center">👩‍💻 Developed By</h3>
+<h3 align="center"> Developed By</h3>
 
 <p align="center">
   <b>Ameena Begum</b>
 </p>
+
