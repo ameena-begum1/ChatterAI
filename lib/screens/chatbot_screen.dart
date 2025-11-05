@@ -1,5 +1,5 @@
 import 'package:chatbot/backend_services/chatbot.dart';
-import 'package:chatbot/signin_screen.dart';
+import 'package:chatbot/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,8 +17,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   final ScrollController _scrollController = ScrollController();
   final List<Map<String, dynamic>> _messages = [];
 
-  final BackendService _backendService =
-      BackendService(); // Backend service for interaction
+  final BackendService _backendService = BackendService();
+
 
   @override
   void initState() {
@@ -43,15 +43,11 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
     _scrollToBottom();
 
-    // Fetching response from Gemini model via BackendService.....start
-    String response = await _backendService.getResponse(text);
+    String? response = await _backendService.getResponse(text);
 
     setState(() {
-      // Replace the last bot message (thinking...) with the actual response
-      _messages[_messages.length - 1] = {'isUser': false, 'text': response};
+      _messages[_messages.length-1] = {'isUser':false, 'text': response};
     });
-
-    _scrollToBottom(); //end
   }
 
   void _scrollToBottom() {
@@ -67,7 +63,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
     return Scaffold(
       backgroundColor: const Color(0xFFFFF3E4),
       appBar: AppBar(
-        automaticallyImplyLeading: false, // Removes back button
+        automaticallyImplyLeading: false, 
         title: const Text("💬 ChatterAI"),
         backgroundColor: const Color(0xFF9B5DE5),
         foregroundColor: Colors.white,
@@ -86,13 +82,12 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                 ),
               );
 
-              // Navigate to the login screen and replace the current screen
               Future.delayed(const Duration(seconds: 1), () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                     builder: (context) => SigninScreen(),
-                  ), // Adjust according to your login screen class
+                  ), 
                 );
               });
             },
