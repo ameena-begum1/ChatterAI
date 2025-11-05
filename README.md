@@ -1,4 +1,4 @@
-<h1 align="center">💬 ChatterAI</h1>
+<h1 align="center"> ChatterAI</h1>
 
 <p align="center">
   <img src="assets/ChatterAI.png" alt="ChatterAI Bot" width="230" style="margin-top: 10px; border-radius: 50%;"/>
@@ -6,23 +6,23 @@
 
 ---
 
-### 🧠 About ChatterAI
+### About ChatterAI
 ChatterAI is a **smart chatbot app** built using **Flutter** and **Firebase**.  
 It integrates **Gemini API** to power real-time intelligent responses.  
 The app lets users **sign up, log in, chat with the AI bot, and reset passwords** — all with a smooth, modern UI.  
 
 ---
 
-### 📱 The UI Looks Like This
+### The UI Looks Like This
 
 <p align="center">
-  <img src="assets/images/ui1.png" alt="App UI 1" width="200" style="border-radius: 10px; margin: 5px;"/>
-  <img src="assets/images/ui2.png" alt="App UI 2" width="200" style="border-radius: 10px; margin: 5px;"/>
-  <img src="assets/images/ui3.png" alt="App UI 3" width="200" style="border-radius: 10px; margin: 5px;"/>
-  <img src="assets/images/ui4.png" alt="App UI 4" width="200" style="border-radius: 10px; margin: 5px;"/>
+  <img src="assets/images/1.png" alt="App UI 1" width="200" style="border-radius: 10px; margin: 5px;"/>
+  <img src="assets/images/2.png" alt="App UI 2" width="200" style="border-radius: 10px; margin: 5px;"/>
+  <img src="assets/images/3.png" alt="App UI 3" width="200" style="border-radius: 10px; margin: 5px;"/>
+  <img src="assets/images/4.png" alt="App UI 4" width="200" style="border-radius: 10px; margin: 5px;"/>
 </p>
 
 ---
 
-### 👩‍💻 Developed By
-**Ruqsana Begum**
+### Developed By
+**Ameena Begum**
